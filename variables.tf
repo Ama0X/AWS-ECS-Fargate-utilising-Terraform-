@@ -204,7 +204,7 @@ variable "ecs_service_name" {
 variable "ecs_task_desired_count" {
   description     = "desirable number of count"
   type            = number
-  default         = 2
+  default         = 1
 }
 
 variable "ecs_task_deployment_minimum_healthy_percent" {
@@ -216,7 +216,7 @@ variable "ecs_task_deployment_minimum_healthy_percent" {
 variable "ecs_task_deployment_maximum_percent" {
   description    = "minimum threshold % after deployment"
   type           = number
-  default        = 200
+  default        = 100
 }
 
 variable "image_name" {
