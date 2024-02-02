@@ -3,6 +3,8 @@ region                                          = "eu-west-3"
 vpc_cidr                                        = "10.0.0.0/17"
 pub_sub1_cidr                                   = "10.0.1.0/24"
 pub_sub2_cidr                                   = "10.0.2.0/24"
+priv_sub1_cidr                                  = "10.0.3.0/24"
+priv_sub2_cidr                                  = "10.0.4.0/24"
 availability_zone_sub1                          = "eu-west-3a"
 availability_zone_sub2                          = "eu-west-3b"
 

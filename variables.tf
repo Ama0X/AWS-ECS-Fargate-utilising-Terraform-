@@ -105,6 +105,34 @@ variable "availability_zone_sub2" {
 
 
 
+# Variables private subnets  
+
+variable "priv_sub1_cidr" {
+  description     = "private subnet 1 cidr block"
+  type            = string
+  default         = "10.0.3.0/24"
+}
+
+variable "availability_zone_sub1" {
+  description     = "private subnet 1 AZ"
+  type            = string
+  default         = "eu-west-2a"
+}
+
+variable "priv_sub2_cidr" {
+  description     = "private subnet 2 cidr block"
+  type            = string
+  default         = "10.0.4.0/24"
+}
+
+variable "availability_zone_sub2" {
+  description     = "private subnet 2 AZ"
+  type            = string
+  default         = "eu-west-2b"
+}
+
+
+
 # Variable ECR repository
 
 variable "ECR_repository_name" {

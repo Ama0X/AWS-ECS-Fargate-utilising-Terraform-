@@ -54,6 +54,29 @@ resource "aws_subnet" "Prod-pub-sub2" {
   }
 }
 
+# Outline private subnet 1
+resource "aws_subnet" "Prod-priv-sub1" {
+  vpc_id               = aws_vpc.E-commerce_VPC.id
+  cidr_block           = var.priv_sub1_cidr
+  availability_zone    = var.availability_zone_sub1
+
+  tags = {
+    Name = "Prod-priv-sub1"
+  }
+}
+
+# Outline private subnet 2
+resource "aws_subnet" "Prod-priv-sub2" {
+  vpc_id               = aws_vpc.E-commerce_VPC.id
+  cidr_block           = var.priv_sub2_cidr
+  availability_zone    = var.availability_zone_sub2
+
+  tags = {
+    Name = "Prod-priv-sub2"
+  }
+}
+
+
 
 # Outline AWS public route table 
 resource "aws_route_table" "Prod-pub-route-table" {
@@ -64,18 +87,38 @@ resource "aws_route_table" "Prod-pub-route-table" {
   }
 }
 
+# Outline AWS private route table 
+resource "aws_route_table" "Prod-priv-route-table" {
+  vpc_id               = aws_vpc.E-commerce_VPC.id
+
+  tags = {
+    Name               = "Prod-priv-route-table"
+  }
+}
 
 # Outline AWS public route association 1
 resource "aws_route_table_association" "pub-route-table-association-1" {
-  subnet_id         = aws_subnet.Prod-pub-sub1.id
-  route_table_id    = aws_route_table.Prod-pub-route-table.id
+  subnet_id             = aws_subnet.Prod-pub-sub1.id
+  route_table_id        = aws_route_table.Prod-pub-route-table.id
 }
 
 
 # Outline AWS public route association 2
 resource "aws_route_table_association" "pub-route-table-association-2" {
-  subnet_id         = aws_subnet.Prod-pub-sub2.id
-  route_table_id    = aws_route_table.Prod-pub-route-table.id
+  subnet_id            = aws_subnet.Prod-pub-sub2.id
+  route_table_id       = aws_route_table.Prod-pub-route-table.id
+}
+
+# Outline AWS private route association 1
+resource "aws_route_table_association" "priv-route-table-association-1" {
+  subnet_id           = aws_subnet.Prod-priv-sub1.id
+  route_table_id      = aws_route_table.Prod-priv-route-table.id
+}
+
+# Outline AWS private route association 2
+resource "aws_route_table_association" "priv-route-table-association-2" {
+  subnet_id          = aws_subnet.Prod-priv-sub2.id
+  route_table_id     = aws_route_table.Prod-priv-route-table.id
 }
 
 
@@ -94,6 +137,32 @@ resource "aws_route" "Prod-igw-association" {
   route_table_id            = aws_route_table.Prod-pub-route-table.id
   destination_cidr_block    = "0.0.0.0/0"
   gateway_id                = aws_internet_gateway.Prod-igw.id
+}
+
+
+# Create Elastic IP Address
+resource "aws_eip" "Prod-eip" {
+tags = {
+Name               = "Prod-eip"
+}
+}
+
+
+# Create NAT Gateway
+resource "aws_nat_gateway" "Prod-Nat-gateway" {
+allocation_id       = aws_eip.Prod-eip.id
+subnet_id           = aws_subnet.Prod-pub-sub1.id
+tags = {
+Name                = "Prod-Nat-gateway"
+}
+}
+
+
+# Outline NAT associate with priv route
+resource "aws_route" "Prod-Nat-association" {
+route_table_id             = aws_route_table.Prod-priv-route-table.id
+gateway_id                 = aws_nat_gateway.Prod-Nat-gateway.id
+destination_cidr_block     = "0.0.0.0/0"
 }
 
 
