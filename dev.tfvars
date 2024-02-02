@@ -5,8 +5,10 @@ pub_sub1_cidr                                   = "10.0.1.0/28"
 pub_sub2_cidr                                   = "10.0.2.0/28"
 priv_sub1_cidr                                  = "10.0.3.0/28"
 priv_sub2_cidr                                  = "10.0.4.0/28"
-availability_zone_sub1                          = "eu-west-1a"
-availability_zone_sub2                          = "eu-west-1b"
+availability_zone_pub_sub1                      = "eu-west-1a"
+availability_zone_pub_sub2                      = "eu-west-1b"
+availability_zone_priv_sub1                     = "eu-west-1a"
+availability_zone_priv_sub2                     = "eu-west-1b"
 
 
 

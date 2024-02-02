@@ -84,7 +84,7 @@ variable "pub_sub1_cidr" {
   default         = "10.0.1.0/24"
 }
 
-variable "availability_zone_sub1" {
+variable "availability_zone_pub_sub1" {
   description     = "public subnet 1 AZ"
   type            = string
   default         = "eu-west-2a"
@@ -97,7 +97,7 @@ variable "pub_sub2_cidr" {
   default         = "10.0.2.0/24"
 }
 
-variable "availability_zone_sub2" {
+variable "availability_zone_pub_sub2" {
   description     = "public subnet 2 AZ"
   type            = string
   default         = "eu-west-2b"
@@ -113,7 +113,7 @@ variable "priv_sub1_cidr" {
   default         = "10.0.3.0/24"
 }
 
-variable "availability_zone_sub1" {
+variable "availability_zone_priv_sub1" {
   description     = "private subnet 1 AZ"
   type            = string
   default         = "eu-west-2a"
@@ -125,7 +125,7 @@ variable "priv_sub2_cidr" {
   default         = "10.0.4.0/24"
 }
 
-variable "availability_zone_sub2" {
+variable "availability_zone_priv_sub2" {
   description     = "private subnet 2 AZ"
   type            = string
   default         = "eu-west-2b"

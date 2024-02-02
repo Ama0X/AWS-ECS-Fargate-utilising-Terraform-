@@ -35,7 +35,7 @@ resource "aws_vpc" "E-commerce_VPC" {
 resource "aws_subnet" "Prod-pub-sub1" {
   vpc_id               = aws_vpc.E-commerce_VPC.id
   cidr_block           = var.pub_sub1_cidr
-  availability_zone    = var.availability_zone_sub1
+  availability_zone    = var.availability_zone_pub_sub1
   
   tags = {
     Name               = "Prod-pub-sub1"
@@ -47,7 +47,7 @@ resource "aws_subnet" "Prod-pub-sub1" {
 resource "aws_subnet" "Prod-pub-sub2" {
   vpc_id               = aws_vpc.E-commerce_VPC.id
   cidr_block           = var.pub_sub2_cidr
-  availability_zone    = var.availability_zone_sub2
+  availability_zone    = var.availability_zone_pub_sub2
   
   tags = {
     Name               = "Prod-pub-sub2"
@@ -58,7 +58,7 @@ resource "aws_subnet" "Prod-pub-sub2" {
 resource "aws_subnet" "Prod-priv-sub1" {
   vpc_id               = aws_vpc.E-commerce_VPC.id
   cidr_block           = var.priv_sub1_cidr
-  availability_zone    = var.availability_zone_sub1
+  availability_zone    = var.availability_zone_priv_sub1
 
   tags = {
     Name = "Prod-priv-sub1"
@@ -69,7 +69,7 @@ resource "aws_subnet" "Prod-priv-sub1" {
 resource "aws_subnet" "Prod-priv-sub2" {
   vpc_id               = aws_vpc.E-commerce_VPC.id
   cidr_block           = var.priv_sub2_cidr
-  availability_zone    = var.availability_zone_sub2
+  availability_zone    = var.availability_zone_priv_sub2
 
   tags = {
     Name = "Prod-priv-sub2"

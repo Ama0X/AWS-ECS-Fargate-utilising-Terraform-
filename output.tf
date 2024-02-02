@@ -11,5 +11,5 @@ output "vpc_id" {
 
 output "ecs_assign_public_ip" {
   description      = "This indicates whether the ECS Fargate service should be assigned a public IP"
-  value            = true  
+  value            = true
 }
